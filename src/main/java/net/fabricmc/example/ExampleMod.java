@@ -15,7 +15,7 @@ public class ExampleMod implements ModInitializer {
 
 		System.out.println("Hello Fabric world!");
 		config = new BlessedConfig(new Identifier("modid", "config"))
-			.addOption("TestString", "Jeff")
+			.addOption("TestString", "Jeff", "Very Epic Test String")
 			.addOption("TestInt", "57")
 			.addOption("DoubleTest", "6.35")
 			.done();

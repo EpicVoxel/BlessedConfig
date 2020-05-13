@@ -26,7 +26,7 @@ public class BlessedConfig {
             isNewConfig = true;
             try {
                 filewriter = new FileWriter(file);
-                filewriter.write("config option\tValue\n");
+                filewriter.write("config option\tValue\tOptional Comment\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -35,17 +35,24 @@ public class BlessedConfig {
         }
     }
 
+    public BlessedConfig addOption(String optionName, String defaultValue) {
+        return this.addOption(optionName, defaultValue, null);
+    }
+
     /**
      * Adds a config option
      * @param optionName Name of config option
      * @param defaultValue 
      * @return JQuerry style method chaining
      */
-    public BlessedConfig addOption(String optionName, String defaultValue) {
+    public BlessedConfig addOption(String optionName, String defaultValue, String comment) {
         if (isNewConfig && filewriter != null) {
             configvalues.put(optionName, defaultValue);
             try {
-                filewriter.write(optionName + "\t" + defaultValue + "\n");
+                if (comment != null)
+                    filewriter.write(optionName + "\t" + defaultValue + "\t" + comment + "\n");
+                else
+                    filewriter.write(optionName + "\t" + defaultValue + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }
